@@ -1,0 +1,23 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+RUN npm install cors
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+
+# docker build -t mywebapp -f Website .
+#   docker run -d -p 3000:3000 --name mywebcont  mywebapp
+#  docker logs mywebcont
+
+#  docker network create mynetwork
+#  docker run -d --name mymysql --network mynetwork mysql:latest
+#  docker run -d --name mynodejs --network mynetwork myweb

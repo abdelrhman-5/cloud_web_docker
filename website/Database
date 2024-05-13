@@ -1,0 +1,29 @@
+# Use Ubuntu 20.04 as the base image
+FROM ubuntu:20.04
+
+# Install MySQL Server without prompt for root password
+RUN apt-get update && apt-get install -y wget net-tools
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Expose MySQL default port (3306)
+EXPOSE 3306
+
+# Create a volume for MySQL data and configuration
+VOLUME ["/var/lib/mysql", "/etc/mysql/mysql.conf.d"]
+
+# Copy SQL initialization script and custom MySQL configuration
+COPY sql.sql /var/lib/mysql/sql.sql
+COPY sql.sql /docker-entrypoint-initdb.d/sql.sql
+COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# Set MySQL root password and other environment variables
+ENV MYSQL_ROOT_PASSWORD=BedoWaell55//
+ENV MYSQL_DATABASE=cloud
+
+# Start MySQL server when the container starts
+CMD ["mysqld"]
+
+
+

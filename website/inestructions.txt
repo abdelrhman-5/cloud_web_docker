@@ -1,0 +1,16 @@
+
+
+
+# docker build -t mysql -f Database .
+# docker build -t mywebapp -f Website .
+# docker-compose up -d
+# docker exec -it website-mysql-1 mysql -u root -p
+# CREATE DATABASE cloud;
+# USE cloud;
+# source /docker-entrypoint-initdb.d/sql.sql;
+# CREATE USER 'root'@'%' IDENTIFIED BY '2004';
+# GRANT ALL PRIVILEGES ON cloud.* TO 'root'@'%';
+# ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '2004';
+# FLUSH PRIVILEGES;
+# exit
+# docker restart website-website-1

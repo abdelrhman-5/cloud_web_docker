@@ -1,0 +1,82 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light background */
+    color: #333;
+}
+
+header {
+    background-color: #007bff; /* Dark blue header */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #007bff; /* Dark blue footer */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.teamMember {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.teamMember:hover {
+    transform: translateY(-5px);
+}
+
+.teamMember img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+}
+
+.teamMember .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.teamMember:hover .overlay {
+    opacity: 1;
+}
+
+.teamMember .overlay h3,
+.teamMember .overlay p {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    color: #fff; /* White text in overlay */
+}

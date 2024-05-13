@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  website:
+    build: 
+      dockerfile: Website
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+
+  mysql:
+    build: 
+      dockerfile: Database
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: BedoWaell55//
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./sql.sql:/docker-entrypoint-initdb.d/sql.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+
+
+
+
+
+# docker build -t mysql -f Database .
+# docker build -t mywebapp -f Website .
+# docker-compose up 
+
